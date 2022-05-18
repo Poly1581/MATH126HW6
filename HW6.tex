@@ -1,0 +1,161 @@
+\documentclass[11pt]{amsart}
+\usepackage{setspace}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{tikz}
+\def\R{{\hbox{\bf R}}}
+\def\C{{\hbox{\bf C}}}
+\def\Q{{\hbox{\bf Q}}}
+\def\G{{\hbox{\bf G}}}
+\def\P{{\hbox{\bf P}}}
+\def\E{{\hbox{\bf E}}}
+\def\V{{\hbox{\bf V}}}
+\def\v{{\hbox{\bf v}}}
+\def\f{{\overline{f}}}
+\font \roman = cmr10 at 10 true pt
+\def\Z{{\hbox{\bf Z}}}
+\def\U{{\hbox{\bf U}}}
+\def\A{{\hbox{\bf A}}}
+\def\eps{\varepsilon}
+\def\RZ{  {\mathbb R} \backslash {\mathbb Z} }
+\def\Span{\hbox{ \rm Span} \,\,\, }
+\def\ep{{\epsilon}}
+\def\rfl {\rfloor}
+\def\lfl {\lfloor}
+\def\CF{{\hbox {\bf F}}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1cm plus4mm minus3mm}
+\input{macros.tex}
+\begin{document}
+
+\begin{center}
+\textbf{{\LARGE Math 126 Homework 6}  \\
+{Due May 18}}
+\end{center}
+
+(Exercises $1$ and $2$ are taken from the Course Text, section 2.2
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% UNINISHED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM  1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}
+
+Let $n$ and $k$ be non-negative integers, and let $m$ be a nonnegative integer which is at most $m$.  Using algebraic methods, show that 
+$$\binom{n}{k} \binom{k}{m} = \binom{n}{m} \binom{n-m}{k-m}$$
+\end{problem}
+\begin{solution}
+
+We can write the left side of this equation as
+$$\binom{n}{k}\binom{k}{m} = \frac{n!}{k!(n-k)!}\cdot\frac{k!}{m!(k-m)!}$$
+and cancel out the $k!$ terms to get
+$$\binom{n}{k}\binom{k}{m} = \frac{n!}{m!(n-k)!(k-m)!}$$
+We can write the right side of this equation as
+$$\binom{n}{m}\binom{n-m}{k-m} = \frac{n!}{m!(n-m)!}\cdot\frac{(n-m)!}{(k-m)!((n-m)-(k-m))!}$$
+and cancel out the $(n-m)!$ terms and simplify a little bit $((n-m)-(k-m))=(n-k)$ to get
+$$\binom{n}{m}\binom{n-m}{k-m} = \frac{n!}{m!(n-k)!(k-m)!}$$
+Therefore,
+$$\binom{n}{k}\binom{k}{m} = \frac{n!}{m!(n-k)!(k-m)!} = \binom{n}{m}\binom{n-m}{k-m}$$
+$$QED$$
+\end{solution}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% UNINISHED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM  2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}
+
+Suppose that a museum curator with $n$ paintings needs to select $k$ of them for display, and needs to pick $m$ of these to put in a particularly prominent part of the display.  Show that both sides of the identiy in problem $1$ correspond to different ways of writing down the solution to this problem (this implies that the two sides must be equal -- in other words I'm asking you to give a combinatorial proof of the same identity you proved algebraically in problem 1).  
+\end{problem}
+\begin{solution}
+
+Consider that $\binom{n}{k}$ corresponds to the number of ways to select (without order) $k$ items from a group of $n$.  Then $\binom{n}{k}$ on the left side corresponds to selecting k paintings to display out of n total, and $\binom{k}{m}$ corresponds  to selecting $m$ paintings to prominently display out of the $k$ already chosen to display.  Since these choices are dependent on eachother (i.e. we must select the prominently displayed paintings after we have already selected the displayed paintings), we must multiply them together to get the total number of ways to make both selections.  On the other hand, we could consider that $\binom{n}{m}$ corresponds to selecting $m$ paintings to display prominently out of the $n$ total and $\binom{n-m}{k-m}$ corresponds to chosing the remaining $k-m$ paintings to display regularly out of the remaining $n-m$ paintings (note that we cannot choose a painting to be displayed both prominently and regularly, so we must remove the $m$ prominently displayed paintings from the set of paintings to pick from once they are chosen.  These two ways correspond to selecting the same group of paintings and are therefore equivalent.
+\end{solution}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% UNINISHED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM  3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}
+
+Show, by whatever means you wish, that for any non-negative integer $n$
+$$ \sum_{k=0}^n k \binom{n}{k} = n 2^{n-1}$$
+\end{problem}
+\begin{solution}
+
+
+Consider that $\forall n \in \mathbb{Z}^+$,
+$$\sum_{k=0}^{n} k\binom{n}{k} = \sum_{k=0}^{n} (n-k)\binom{n}{n-k}$$
+by simply reversing the terms. Therefore,
+$$2\sum_{k=0}^{n} k\binom{n}{k} = \sum_{k=0}^{n} k\binom{n}{k} + \sum_{k=0}^{n} (n-k)\binom{n}{k}$$
+$$= \sum_{k=0}^{n} k\binom{n}{k} + (n-k)\binom{n}{n-k}$$
+$$= \sum_{k=0}^{n} k\binom{n}{k} + n\binom{n}{n-k}  - k\binom{n}{n-k}$$
+Now, consider that $\binom{n}{k} = \binom{n}{n-k}$ by way of
+$$\binom{n}{k} = \frac{n!}{k!(n-k)!} = \frac{n!}{(n-k)!(n-(n-k))!} = \binom{n}{n-k}$$
+And, so
+$$2\sum_{k=0}^{n} k\binom{n}{k} = \sum_{k=0}^{n} k\binom{n}{k} + n\binom{n}{k} - k\binom{n}{k}$$
+$$= \sum_{k=0}^{n} (k-k)\binom{n}{k} + n\binom{n}{k}$$
+$$= \sum_{k=0}^{n} n\binom{n}{k}$$
+Since $n$ is invariant in the sum, we can extract it by linearity of sums giving
+$$2\sum_{k=0}^{n} k\binom{n}{k} = n\sum_{k=0}^{n} \binom{n}{k} = n 2^n$$
+Then, dividing through by a common factor of $2$ gives
+$$\sum_{k=0}^{n} k\binom{n}{k} = n 2^{n-1}$$
+$$QED$$
+
+\end{solution}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% UNINISHED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM  4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}
+
+Let $a,b,c$ be positive integers with $a+b+c=n$.  Show, by whatever means you wish, that 
+$$\binom{n}{a,b,c} = \binom{n-1}{a-1,b,c}+\binom{n-1}{a,b-1,c}+\binom{n-1}{a,b,c-1}$$
+We proved this for binomial coefficients in class, and one option is to pick one of the proofs for that version and imitate it. 
+\end{problem}
+\begin{solution}
+
+We can evaluate all multinomial expressions in this equation as:
+$$\binom{n}{a,b,c} = \frac{n!}{a!b!c!}$$
+$$\binom{n-1}{a-1,b,c} = \frac{(n-1)!}{(a-1)!b!c!}$$
+$$\binom{n-1}{a,b-1,c} = \frac{(n-1)!}{a!(b-1)!c!}$$
+$$\binom{n-1}{a,b,c-1} = \frac{(n-1)!}{a!b!(c-1)!}$$
+Then,
+$$\binom{n-1}{a-1,b,c} + \binom{n-1}{a,b-1,c} + \binom{n-1}{a,b,c-1} = \frac{(n-1)!}{(a-1)!b!c!} + \frac{(n-1)!}{a!(b-1)!c!} + \frac{(n-1)!}{a!b!(c-1)!}$$
+$$= \frac{a(n-1)!}{a!b!c!} + \frac{b(n-1)!}{a!b!c!} + \frac{c(n-1)!}{a!b!c!}$$
+$$= \frac{a(n-1)!+b(n-1)!+c(n-1)!}{a!b!c!}$$
+$$= \frac{(a+b+c)(n-1)!}{a!b!c!}$$
+$$= \frac{n(n-1)!}{a!b!c!}$$
+$$= \frac{n!}{a!b!c!}$$
+$$ = \binom{n}{a,b,c}$$
+$$QED$$
+\end{solution}
+ 
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% UNINISHED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM  5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}
+
+Consider the expansion 
+$$(2x+5)^{10000} = \sum_{k=0}^n a_n x^n$$
+(where $a_0, a_1, \dots, a_{10000}$ are integers).
+\begin{itemize}
+	\item[\textbf{Part a:}]{} Determine $\frac{a_n}{a_{n-1}}$ in as simple form as you can (You may want to look at the warmup from 5/9).
+	\item[\textbf{Part b:}]{} For what $n$ is $a_n$ largest?  (Hint: One approach is to use your answer to part a -- if $a_n$ is really the largest, then $\frac{a_n}{a_{n-1}}>1$ and $\frac{a_{n+1}}{a_n}<1$).
+\end{itemize}
+\end{problem}
+\begin{solution}
+\end{solution}
+ 
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% UNINISHED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM  6 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}
+
+Find an ordering of the numbers $\{1,2,3,4,5,6,7,8,9\}$ having no increasing or decreasing subsequence of length $4$.  More generally, give an ordering of $\{1,2,\dots,n^2\}$ having no increasing subsequence of length $n+1$ and no decreasing subsequence of length $n+1$.  This implies that the bound we got from the pigeonhole principle in class cannot be improved.
+\end{problem}
+\begin{solution}
+\end{solution}
+
+
+
+
+\end{document} 
