@@ -37,8 +37,8 @@
 (Exercises $1$ and $2$ are taken from the Course Text, section 2.2
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% UNINISHED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM  1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FINISHED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM  1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{problem}
 
 Let $n$ and $k$ be non-negative integers, and let $m$ be a nonnegative integer which is at most $m$.  Using algebraic methods, show that 
@@ -60,8 +60,8 @@ $$QED$$
 \end{solution}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% UNINISHED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM  2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FINISHED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM  2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{problem}
 
 Suppose that a museum curator with $n$ paintings needs to select $k$ of them for display, and needs to pick $m$ of these to put in a particularly prominent part of the display.  Show that both sides of the identiy in problem $1$ correspond to different ways of writing down the solution to this problem (this implies that the two sides must be equal -- in other words I'm asking you to give a combinatorial proof of the same identity you proved algebraically in problem 1).  
@@ -72,8 +72,8 @@ Consider that $\binom{n}{k}$ corresponds to the number of ways to select (withou
 \end{solution}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% UNINISHED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM  3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FINISHED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM  3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{problem}
 
 Show, by whatever means you wish, that for any non-negative integer $n$
@@ -103,8 +103,8 @@ $$QED$$
 \end{solution}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% UNINISHED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM  4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FINISHED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM  4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{problem}
 
 Let $a,b,c$ be positive integers with $a+b+c=n$.  Show, by whatever means you wish, that 
@@ -130,8 +130,8 @@ $$QED$$
 \end{solution}
  
  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% UNINISHED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM  5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FINISHED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM  5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{problem}
 
 Consider the expansion 
@@ -143,11 +143,40 @@ $$(2x+5)^{10000} = \sum_{k=0}^n a_n x^n$$
 \end{itemize}
 \end{problem}
 \begin{solution}
+
+We can approach this problem using the binomial theorem:
+$$(x+y)^n = \sum_{k=0}^n \binom{n}{k} x^{n-k} y^k = \sum_{k=0}^n \binom{n}{k} y^{n-k} x^k$$
+Substituting $2x$ for $x$ and $5$ for $y$ to give:
+$$(2x+5)^n = \sum_{k=0}^n \binom{n}{k} (2x)^k 5^{n-k} = \sum_{k=0}^n \binom{n}{k} 2^k 5^{n-k} x^k$$
+Then, considering n (different from the n in the sum in the problem statement) to be constant (as it is in this problem), we can write:
+$$a_k = \binom{n}{k} 2^k 5^{n-k}$$
+Now, onto the subproblems:
+
+\begin{itemize}
+	\item[\textbf{Part a:}]{}
+		Consider $a_k = \binom{10000}{k} 2^k 5^{10000-k}$, then we can write:
+		$$\frac{a_k}{a_{k-1}} = \frac{\binom{10000}{k} 2^k 5^{10000-k}}{\binom{10000}{k-1} 2^{k-1} 5^{10001-k}}$$
+		We can then expand each $\binom{n}{k}$ term with the factorial definition of binomial coefficients giving the very complex expression:
+		$$\frac{a_k}{a_{k-1}} = \frac{\frac{10000!}{k!(10000-k)!} 2^k 5^{10000-k}}{\frac{10000!}{(k-1)!(10001-k)!} 2^{k-1} 5^{10001-k}}$$
+		We can rewrite this expression using properties of fractions:
+		$$\frac{a_k}{a_{k-1}} = \frac{10000!}{k!(10000-k)!} \frac{(k-1)!(10001-k)!}{10000!} \frac{2^k 5^{10000-k}}{2^{k-1} 5^{10001-k}}$$
+		We can then cancel the (numerous) factors similar between the numerator and denominator in order to simplify even further to:
+		$$\frac{a_k}{a_{k-1}} = \frac{2}{5}\frac{10001-k}{k}$$
+		Which is of a sufficiently simple form.
+		\vskip 0.15in
+	\item[\textbf{Part b:}]{} Finding k such that $\frac{a_k}{a_{k-1}} > 1$ and $\frac{a_{k+1}}{a_k} < 1$ is equivalent to solving the following equation for $k \in \mathbb{R}$:
+		$$1 = \frac{a_k}{a_{k-1}} = \frac{2}{5} \frac{10001-k}{k}$$
+		$$\Rightarrow \frac{5}{2} = \frac{10001-k}{k}$$
+		$$\Rightarrow \frac{5}{2} k = 10001-k$$
+		$$\Rightarrow 10001 = \frac{7}{2}k$$
+		$$\Rightarrow k = \frac{2}{7} 10001 \approx	2857.4286$$
+		We can then round down and check that $k = 2857$ satisfies the requirements of this problem.
+\end{itemize}
 \end{solution}
  
  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% UNINISHED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM  6 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% UNINISHED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROBLEM  6 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{problem}
 
 Find an ordering of the numbers $\{1,2,3,4,5,6,7,8,9\}$ having no increasing or decreasing subsequence of length $4$.  More generally, give an ordering of $\{1,2,\dots,n^2\}$ having no increasing subsequence of length $n+1$ and no decreasing subsequence of length $n+1$.  This implies that the bound we got from the pigeonhole principle in class cannot be improved.
