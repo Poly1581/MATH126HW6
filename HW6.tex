@@ -1,6 +1,8 @@
 \documentclass[11pt]{amsart}
 \usepackage{setspace}
+\usepackage{hyperref}
 \usepackage{fullpage}
+\usepackage{xcolor}
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{tikz}
@@ -182,6 +184,13 @@ Now, onto the subproblems:
 Find an ordering of the numbers $\{1,2,3,4,5,6,7,8,9\}$ having no increasing or decreasing subsequence of length $4$.  More generally, give an ordering of $\{1,2,\dots,n^2\}$ having no increasing subsequence of length $n+1$ and no decreasing subsequence of length $n+1$.  This implies that the bound we got from the pigeonhole principle in class cannot be improved.
 \end{problem}
 \begin{solution}
+
+I was a little lost with finding an ordering for the numbers $\{1,2,3,4,5,6,7,8,9\}$ at first, so I wrote up a little c++ program to help.  It uses dynamic programming longest increasing subsequence and longest decreasing subsequence algorithms along with depth first search traversal of the tree of orderings of $\{1,2,3,4,5,6,7,8,9\}$ to find a solution.  The code is available on {\color{blue} \underline{\href{https://github.com/Poly1581/MATH126HW6/blob/main/NOSEQUENCE.cpp}{my homework 6 github page}}}.  The sequence found is $789456123$, and can be seen to be composed of three increasing subsequences of length 3.  This implies a solution to the general problem of finding an ordering of $\{1,2,\dots,n^2\}$ with no increasing or decreasing subsequence of length $n+1$.  The general algorithm to generate such a sequence is:
+\begin{itemize}
+	\item[\textbf{1.}]{} Initialize the ordering to be empty.
+	\item[\textbf{2.}]{} Initialize the set of remaining numbers to be $\{1,2,\dots,n^2\}$
+	\item[\textbf{2.}]{} While there are still numbers in the remaining set, remove the lowest $n$ numbers from that set and prepend them (ordered least to greatest) to the ordering.
+\end{itemize}
 \end{solution}
 
 
