@@ -67,12 +67,8 @@ int main() {
 		choices = state.first;
 		curr = state.second;
 		if(choices.size() == 0) {	//				LEAF NODE IN TREE
-			cout << "EXTERNAL" << endl;
-			cout << "\tSIZE: " << choices.size() << endl;
 			found = (maxLIS(curr) < 4)&&(maxLDS(curr) < 4);
 		} else {				//				INTERNAL NODE IN TREE
-			cout << "INTERNAL" << endl;
-			cout << "\tSIZE: " << choices.size() << endl;
 			for(int i = 0; i < choices.size(); i++) {
 				vector<int> newcurr = curr;
 				newcurr.push_back(choices.at(i));
